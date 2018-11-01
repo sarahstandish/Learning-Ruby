@@ -59,6 +59,9 @@ single_digits = {
     9 => "ninety"
   }
 
+if number.to_i == 0
+  puts "zero"
+else
 
 each_number = number.to_s.split("").reverse
 
@@ -68,18 +71,18 @@ each_number.each_with_index do |n, i|
   elsif i == 1 && n != "1"
     each_number[i].replace(tens.fetch(each_number[i].to_i))
   elsif i == 1 && n == "1"
-    each_number[0].replace(teens.fetch(each_number[0]))
+    each_number[i - 1].replace(teens.fetch(each_number[i - 1]))
     each_number[i].replace("zero")
   elsif i == 4 && n != "1"
-    each_number[i].replace(tens.fetch(each_number[i].to_i))
+   each_number[i].replace(tens.fetch(each_number[i].to_i))
   elsif i == 4 && n == "1"
-    each_number[i - 1].replace(teens.fetch(each_number[i - 1]))
+   each_number[i - 1].replace(teens.fetch(each_number[i - 1]))
     each_number[i].replace("zero")
   elsif i == 7 && n != "1"
-    each_number[i].replace(tens.fetch(each_number[i].to_i))
+   each_number[i].replace(tens.fetch(each_number[i].to_i))
   elsif i == 7 && n == "1"
-    each_number[i - 1].replace(teens.fetch(each_number[i - 1]))
-    each_number[i].replace("zero")
+   each_number[i - 1].replace(teens.fetch(each_number[i - 1]))
+   each_number[i].replace("zero")
   end
 end
 
@@ -101,12 +104,11 @@ each_number.each_with_index do |n, i|
   elsif i == 7 && each_number[i - 1].match?(/zero/)
     each_number[i] = n + " million"
   elsif i == 8
-       if each_number[i - 1].match?(/zero/) && each_number[i - 2].match?(/zero/)
-    each_number[i] = n + " hundred million"
-    else 
-    each_number[i] = n + " hundred"
-    end
-
+      if each_number[i - 1].match?(/zero/) && each_number[i - 2].match?(/zero/)
+      each_number[i] = n + " hundred million"
+      else 
+      each_number[i] = n + " hundred"
+      end
   elsif i == 9
     each_number[i] = n + " billion"
   end
@@ -121,8 +123,10 @@ until i == each_number.length
   end
 end
 
-return each_number.reverse.join(" ")
+puts each_number.reverse.join(" ")
 
 end
 
-to_english(1234500000)
+end
+
+to_english(0)
