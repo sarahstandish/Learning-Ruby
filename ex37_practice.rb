@@ -1,23 +1,8 @@
 # From "Learn Ruby the Hard Way" https://learnrubythehardway.org/book/ex37.html
 
-# alias	Create another name for a function.	__________ X Y
-
-# defined?	Is this class/function/etc. defined already?
-
-# ensure	Run this code whether an exception happens or not.
-
-# next	Skip to the next element of a .each iterator.
-
-# redo	Rerun a code block exactly the same.
-
-# self	The current object, class, or module.
-
-# undef	Remove a function definition from a class.
-
-# yield	Pause and transfer control to the code block.
-
 # the purpose of this program is to practice various keywords introduced 
 # in exercise 37 of Ruby the Hard Way
+# and in previous exercises
 
 class Student
     def initialize(name, detention_status, house)
@@ -26,7 +11,7 @@ class Student
         @house = house
     end
 
-    def get_name #read the attribute
+    def get_player_name #read the attribute
         @name
     end
 
@@ -45,9 +30,11 @@ class Student
     def get_house
         @house
     end
+
+    alias name get_player_name #practice using alias
 end
 
-def get_name
+def get_player_name
     puts "You are standing in the entryway to the  school with the rest of the new students. Professor McGonagal approaches and asks you, \"What's your name?\""
     name = gets.chomp.capitalize
     return name
@@ -55,7 +42,7 @@ end
 
 
 def choose_to_go_in(player)
-    puts "\n\n\"Welcome, #{player.get_name},\" Professort McGonagal greets you."
+    puts "\n\n\"Welcome, #{player.get_player_name},\" Professort McGonagal greets you."
     
     puts "\n\nThe Great Hall is in front of you.  Do you go in?"
     choice = gets.chomp
@@ -84,7 +71,7 @@ def great_hall(player)
         puts "\n\nAnother first-year whispers to you: \"Did you hear that Billingsly didn't come into the Great Hall right away and he already got detention?\'"
     end
 
-    puts "\n\nOne by one, Professor McGonagal calls students to the front of the Great Hall to be sorted. Finally, you hear your name echoing from the stone walls:\n\n\"#{player.get_name.upcase}!\"\n\nIt's time.  You approach the sorting hat and place it on your head."
+    puts "\n\nOne by one, Professor McGonagal calls students to the front of the Great Hall to be sorted. Finally, you hear your name echoing from the stone walls:\n\n\"#{player.get_player_name.upcase}!\"\n\nIt's time.  You approach the sorting hat and place it on your head."
 
 end
 
@@ -92,7 +79,7 @@ def sorting_hat(player)
 
     houses = ["Gryffindor", "Slytherin", "Ravenclaw", "Hufflepuff"]
 
-    print "\n\nYou hear a low voice, almost muttering to itself...\n\n\"Well, #{player.get_name}\" it says...  "
+    print "\n\nYou hear a low voice, almost muttering to itself...\n\n\"Well, #{player.get_player_name}\" it says...  "
 
     case player.get_detention_status
     when true
@@ -136,19 +123,19 @@ def sorting_hat(player)
 
     if houses.include?(hope)
         player.set_house = hope
-        puts "\"Any easy case, then...better be #{player.get_house.upcase}!!!!\" The house shouted the last word out loud."
+        puts "\n\n\"An easy case, then...better be #{player.get_house.upcase}!!!!\""
     else
         player.set_house = houses[rand(1)]
-        puts "Not sure I agree...I'm placing you in...#{player.get_house.upcase}!!!!\" The house shouted the last word out loud."
+        puts "\n\n\"Not sure I agree...I'm placing you in...#{player.get_house.upcase}!!!!\""
     end
 
-    puts "As the students in the great hall clap and cheer politely, you walk to the #{player.get_house} table and sit down."
+    puts " The hat shouted the last word out loud. As the students in the great hall clap and cheer politely, you walk to the #{player.get_house} table and sit down."
 
 end
 
 BEGIN { puts "Welcome to Hogwarts School of Witchcraft and Wizardry!"}
 
-player = Student.new(get_name, false, nil)
+player = Student.new(get_player_name, false, nil)
 
 choose_to_go_in(player)
 
