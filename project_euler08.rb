@@ -55,4 +55,3 @@ new_number_array.each do |sub_array|
 end
 
 puts product 
-
