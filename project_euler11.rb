@@ -73,7 +73,7 @@ end
 
 vertical_product = check_vertically(grid)
 
-print vertical_product
+puts vertical_product
 
 def check_horizontally(array)
     
@@ -99,11 +99,52 @@ grid.each do |line|
     end
 end
 
-print horizontal_product
+puts horizontal_product
 
-def check_diagonally_right
+def check_diagonally_right(grid)
     
+    product = 0
+    line = 0
+    i = 0
+    until line == grid.length - 3
+        until i == grid[0].length - 3
+            temp_product = grid[line][i] * grid[line + 1][i + 1] * grid[line + 2][i + 2] * grid[line + 3][i + 3]
+            if temp_product > product
+                product = temp_product
+            end
+            i += 1
+        end
+        line += 1
+        i = 0
+    end
+
+    return product 
 end
 
-def check_diagonally_left
+diagonal_product_right = check_diagonally_right(grid)
+
+puts diagonal_product_right
+
+def check_diagonally_left(grid)
+    
+    product = 0
+    line = 0
+    i = 3
+    until line == grid.length - 3
+        until i == grid[0].length - 3
+            temp_product = grid[line][i] * grid[line + 1][i - 1] * grid[line + 2][i - 2] * grid[line + 3][i - 3]
+            if temp_product > product
+                product = temp_product
+            end
+            i += 1
+        end
+        line += 1
+        i = 3
+    end
+
+    return product 
 end
+
+diagonal_product_left = check_diagonally_left(grid)
+
+puts diagonal_product_left
