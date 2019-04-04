@@ -6,10 +6,6 @@
 
 require 'pry'
 
-primes_under = 2000000
-numbers_array = [*2..primes_under]
-
-#this is based on the seive of erosthenes https://www.geeksforgeeks.org/sieve-of-eratosthenes/
 def remove_non_primes(numbers_array)
     x = 2
     loop do 
@@ -19,17 +15,35 @@ def remove_non_primes(numbers_array)
         break if (x * x) > numbers_array[-1]
         x += 1
     end
+    
     return numbers_array
 
 end
 
-def sum_array(numbers_array)
-    sum = 0
-    numbers_array.each {|n| sum += n}
-    print sum
-end
+# primes_under = 2000000
+# numbers_array = [*2..primes_under]
 
-sum_array(remove_non_primes(numbers_array))
+# #this is based on the seive of erosthenes https://www.geeksforgeeks.org/sieve-of-eratosthenes/
+# def remove_non_primes(numbers_array)
+#     x = 2
+#     loop do 
+#         numbers_array.delete_if do |n|
+#             n >= (x * x) && n % x == 0
+#         end
+#         break if (x * x) > numbers_array[-1]
+#         x += 1
+#     end
+#     return numbers_array
+
+# end
+
+# def sum_array(numbers_array)
+#     sum = 0
+#     numbers_array.each {|n| sum += n}
+#     print sum
+# end
+
+# sum_array(remove_non_primes(numbers_array))
 
 
 # this works for small number but it's too slow, doesn't work for 2 million

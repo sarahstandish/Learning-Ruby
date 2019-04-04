@@ -17,48 +17,70 @@
 
 require 'pry'
 
-def remove_non_primes(numbers_array)
-    x = 2
-    loop do 
-        numbers_array.delete_if do |n|
-            n >= (x * x) && n % x == 0
+def is_prime(i)
+
+    factors = []
+
+    for x in 2..(i / 3)
+        if i % x == 0
+            factors << x
         end
-        break if (x * x) > numbers_array[-1]
-        x += 1
     end
+
+    if factors.length == 0
+        return true
+    end
+end
+
+def find_prime_factors(triangle_number)
     
-    return numbers_array
+    prime_factors_array = []
+    n = 2
+    dividend = triangle_number
+
+    loop do
+        quotient = dividend / n
+            if dividend % n != 0
+                n += 1
+            elsif dividend % n == 0 && is_prime(quotient)
+                prime_factors_array << n
+                prime_factors_array << quotient
+                break
+            elsif dividend % n == 0
+                prime_factors_array << n
+                dividend = quotient
+            end
+        end
+
+    return prime_factors_array
 
 end
 
-def find_all_factors(numbers_array, triangle_number)
-    
-    numbers_array.uniq.each_index do |i|
-        n = 1
-        until n + i + 1 == numbers_array.uniq.length
-            binding.pry
-            numbers_array << numbers_array.uniq[i] * numbers_array.uniq[i + n] unless numbers_array.uniq[i] * numbers_array.uniq[i + n] > triangle_number
-            n += 1
-        end
+def count_factors(prime_factors_array)
 
+    number_of_factors = 1
+
+    prime_factors_array.uniq.each do |prime_factor|
+        number_of_factors *= (prime_factors_array.count(prime_factor) + 1)
     end
 
-    return numbers_array.uniq.length
+    return number_of_factors
 
 end
 
-more_factors_than = 5
+
+#count_factors(find_prime_factors(3))
+
+more_factors_than = 500
 
 n = 2
 
 loop do 
     triangle_number = (n * (n + 1)) / 2
-    numbers_array = [*1..triangle_number]
-    if find_all_factors(remove_non_primes(numbers_array), triangle_number) > more_factors_than
+    if count_factors(find_prime_factors(triangle_number)) > more_factors_than
         puts triangle_number
+        break
     else
     n += 1
     end
 end
-
-
