@@ -73,13 +73,20 @@ end
 
 more_factors_than = 500
 
-n = 2
+n = 10000
 
 loop do 
     triangle_number = (n * (n + 1)) / 2
-    if count_factors(find_prime_factors(triangle_number)) > more_factors_than
-        puts triangle_number
-        break
+    if triangle_number.digits[0] == 0 || triangle_number.digits[0] == 6
+        factors = count_factors(find_prime_factors(triangle_number))
+        puts "n: #{n}"
+        puts "triangle number: #{triangle_number}"
+        puts "factors: #{factors}"
+        if factors > more_factors_than
+            puts triangle_number
+            break
+        end
+        n += 1
     else
     n += 1
     end
