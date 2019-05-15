@@ -5,6 +5,10 @@
 #goal: understand how he uses classes and sub-classes
 #comment on everything so I can be sure I understand it
 
+#try to read more at https://www.reddit.com/r/learnprogramming/comments/3anno5/ruby_learn_ruby_the_hard_way_ex_43_classes_and/
+
+require 'pry'
+
 class Engine #make a class called engine. this runs the game
 
     def initialize(scene_map) #initialize the enginge with a local variable called scene map
@@ -77,11 +81,11 @@ class LaserWeaponArmory < Scene
     def enter
         puts "You do a dive roll into the Weapon Armory, crouch and scan the room for more Gothons that might be hiding. It's dead quiet, too quiet. You stand up and run to the far side of the room and find the neutron bomb in its container. There's a keypad lock on the box and you need the code to get the bomb out. If you get the code wrong 10 times then the lock cloese forever and you can't get the bomb. The code is three digits."
         code = "123" # this was originally randomly generated but I won't be able to test the game if I can't guess the code
-        guess = $stdin.gets.chomp
         print "[keypad]>"
-        guesses = 0
+        guess = $stdin.gets.chomp
+        guesses = 1
 
-        while guess != code && guesses < 10
+        while guess != code && guesses <= 9
             puts "BZZZZD!"
             guesses += 1
             print "[keypad]>"

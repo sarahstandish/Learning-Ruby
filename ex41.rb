@@ -120,3 +120,4 @@ mary.love_pet
 satan.make_noise
 rover.make_noise
 flipper.unhappy
+flipper.swimming_motion
